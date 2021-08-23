@@ -35,12 +35,27 @@ function switchtheme(event){
   //console.log(event.target.checked)
   if (event.target.checked) {
     document.documentElement.setAttribute('data-theme' , 'dark');
+    localStorage.setItem('theme' , 'dark');
     darkmode();
   }
   else{
     document.documentElement.setAttribute("data-theme", "light"); 
+    localStorage.setItem('theme' , 'light')
     lightmode();
   }
 }
 
 toggleswitch.addEventListener('change' , switchtheme)
+
+const currenttheme = localStorage.getItem('theme')
+if(currenttheme)
+{
+  toggleswitch
+  if(currenttheme === 'dark')
+  {
+    toggleswitch.checked = true;
+    document.documentElement.setAttribute("data-theme", "dark");
+    darkmode();
+  }
+}
+
